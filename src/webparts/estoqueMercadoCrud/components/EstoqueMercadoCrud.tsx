@@ -74,7 +74,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
                   <span className={styles.label} onClick={this.getAllItems}>Ver todos</span>
                 </div>
                 <div className={styles.button}>
-                  <span className={styles.label} onClick={this.updateItem}>Update</span>
+                  <span className={styles.label} onClick={this.updateItem}>Atualizar</span>
                 </div>
                 <div className={styles.button}>
                   <span className={styles.label} onClick={this.deleteItem}>Apagar</span>
@@ -88,6 +88,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
   }
   //Criar item
   //Teste GIT
+
   private createItem = async () => {
     var nome_produto = document.getElementById("NOME_PRODUTO")['value'];
     var quantidade = document.getElementById("QUANTIDADE")['value'];
@@ -203,27 +204,62 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
   //Update Item
   private updateItem = async () => {
+    var nome_produto = document.getElementById("NOME_PRODUTO")['value'];
+    var quantidade = document.getElementById("QUANTIDADE")['value'];
+    var data = document.getElementById("DATA_VALIDADE")['value'];
+    var tipo_produto = document.getElementById("TIPO_PRODUTO")['value'];
+    var produto_importado = document.getElementById("PRODUTO_IMPORTADO")['value'];
+
+
+    if (produto_importado === "") {
+      alert("O campo Produto importado e diferente de SIM ou NAO");
+
+
+    }
+    if (nome_produto.trim() === "") {
+      alert("O campo Nome do Produto esta vazio");
+
+    }
+    if (quantidade === "") {
+      alert("O campo Quantidade esta vazio");
+
+    }
+    if (data === "") {
+      alert("O campo Data de Validade esta vazio");
+
+    }
+    if (tipo_produto === "") {
+      alert("O campo Tipo de produto esta vazio");
+
+    }
+
     try {
-      const id: number = document.getElementById('itemId')['value'];
-      if (id > 0) {
-        const itemUpdate = await sp.web.lists.getByTitle("SUPERMERCADO").items.getById(id).update({
-          'NOME_PRODUTO': document.getElementById("NOME_PRODUTO")['value'],
-          'QUANTIDADE': document.getElementById("QUANTIDADE")['value']
-        });
-        console.log(itemUpdate);
-        alert(`Item com ID: ${id} Alterado com sucesso`);
-        document.getElementById("NOME_PRODUTO")['value'] = "";
-        document.getElementById("QUANTIDADE")['value'] = "";
-        document.getElementById("PRODUTO_IMPORTADO")['value'] = "";
-        document.getElementById("DATA_VALIDADE")['value'] = "";
-        document.getElementById("TIPO_PRODUTO")['value'] = "";
-      }
-      else {
-        alert(`Por favor insira um ID Valido`);
+      if (nome_produto.trim() && quantidade && data && tipo_produto && produto_importado != "") {
+        const id: number = document.getElementById('itemId')['value'];
+        if (id > 0) {
+          const itemUpdate = await sp.web.lists.getByTitle("SUPERMERCADO").items.getById(id).update({
+            'NOME_PRODUTO': document.getElementById("NOME_PRODUTO")['value'],
+            'QUANTIDADE': document.getElementById("QUANTIDADE")['value'],
+            'PRODUTO_IMPORTADO': document.getElementById("PRODUTO_IMPORTADO")['value'],
+            'DATA_VALIDADE': document.getElementById("DATA_VALIDADE")['value'],
+            'TIPO_PRODUTO': document.getElementById("TIPO_PRODUTO")['value']
+          });
+          console.log(itemUpdate);
+          alert(`Item com ID: ${id} Alterado com sucesso`);
+          document.getElementById("NOME_PRODUTO")['value'] = "";
+          document.getElementById("QUANTIDADE")['value'] = "";
+          document.getElementById("PRODUTO_IMPORTADO")['value'] = "";
+          document.getElementById("DATA_VALIDADE")['value'] = "";
+          document.getElementById("TIPO_PRODUTO")['value'] = "";
+        }
+        else {
+          alert(`Por favor insira um ID Valido`);
+        }
       }
     }
+
     catch (e) {
-      console.error(e);
+      console.log(e);
     }
   }
 
