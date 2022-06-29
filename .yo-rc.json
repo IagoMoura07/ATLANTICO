@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "estoque-mercado-crud",
+    "libraryId": "94129e24-23f7-4e2a-80ce-7de811c9b7c1",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "Estoque-Mercado-CRUD",
+    "solutionShortDescription": "Estoque-Mercado-CRUD description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

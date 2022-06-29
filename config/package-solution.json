@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "estoque-mercado-crud-client-side-solution",
+    "id": "94129e24-23f7-4e2a-80ce-7de811c9b7c1",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Estoque-Mercado-CRUD description"
+      },
+      "longDescription": {
+        "default": "Estoque-Mercado-CRUD description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "estoque-mercado-crud Feature",
+        "description": "The feature that activates elements of the estoque-mercado-crud solution.",
+        "id": "ad63f7a1-1fe8-4de9-b27f-87943292c67b",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/estoque-mercado-crud.sppkg"
+  }
+}
