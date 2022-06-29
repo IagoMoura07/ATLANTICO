@@ -17,6 +17,8 @@ O field dos campos da lista foi: NOME_PRODUTO, QUANTIDADE, DATA_VALIDADE, TIPO_P
 O campo DATA_SEM_FORMATACAO so existe na lista do Sharepoint e serve unica e exclusivamente para consulta da data.<br>
 O campo QUANTIDADE foi definido como Number, todos os demais definidos como Texto com uma linha.<br><br>
 
+O tipo de produto e alimentado por uma lista auxiliar do Sharepoint com nome de TIPO_PRODUTO, o campo tambem se chama TIPO_PRODUTO.<br><br>
+
 ## References
 
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
