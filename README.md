@@ -2,7 +2,7 @@
 
 Solução desenvolvida em teste tecnico para Instituto Atlatico.
 
-##Versoes <br>
+##Versões <br>
 As versões dos Frameworks e Libs utilizadas são: <br>
 NodeJS v14.15.1<br>
 Gulp v4.0.2 - CLI v2.3.0<br>
@@ -11,6 +11,11 @@ Yo v4.3.0<br>
 PNP/SP v2.3.0<br>
 SPFx Yoman Generator v1.14.0<br>
 <br><br>
+Observações importantes: <br>
+O nome da lista usada foi: SUPERMERCADO (Field da lista tambem é SUPERMERCADO) <br>
+O field dos campos da lista foi: NOME_PRODUTO, QUANTIDADE, DATA_VALIDADE, TIPO_PRODUTO, PRODUTO_IMPORTADO, DATA_SEM_FORMATACAO<br>
+O campo QUANTIDADE foi definido como Number, todos os demais definidos como Texto com uma linha.<br><br>
+
 ## References
 
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
