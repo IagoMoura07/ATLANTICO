@@ -2,15 +2,15 @@
 
 Solução desenvolvida em teste tecnico para Instituto Atlatico.
 
-##Versoes
-As versões dos Frameworks e Libs utilizadas são: 
-NodeJS v14.15.1
-Gulp v4.0.2 - CLI v2.3.0
-NPM v6.14.8
-Yo v4.3.0
-PNP/SP v2.3.0
-SPFx Yoman Generator v1.14.0
-
+##Versoes <br>
+As versões dos Frameworks e Libs utilizadas são: <br>
+NodeJS v14.15.1<br>
+Gulp v4.0.2 - CLI v2.3.0<br>
+NPM v6.14.8<br>
+Yo v4.3.0<br>
+PNP/SP v2.3.0<br>
+SPFx Yoman Generator v1.14.0<br>
+<br><br>
 ## References
 
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
