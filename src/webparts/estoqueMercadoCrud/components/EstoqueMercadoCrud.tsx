@@ -7,8 +7,10 @@ import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
 
+//window.addEventListener('load', tipoproduto);
 
 export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoCrudProps, {}> {
+  
   public render(): React.ReactElement<IEstoqueMercadoCrudProps> {
     const {
       description,
@@ -18,8 +20,8 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
       userDisplayName
     } = this.props;
 
+  
     return (
-
 
       <div className={styles.EstoqueMercadoCrud}>
         <div className={styles.container}>
@@ -49,14 +51,10 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
                   <option value="Não">Não</option>
                 </select>
               </div>
-              <div className={styles.itemField}>
-                <div className={styles.fieldLabel}>*Tipo de Produto</div>
+              <div className={styles.itemField}onClick={this.tipoproduto}>
+                <div className={styles.fieldLabel}onLoad={this.tipoproduto} >*Tipo de Produto</div>
                 <select id="TIPO_PRODUTO">
-                  <option value=""></option>
-                  <option value="Cereais">Cereais</option>
-                  <option value="Produtos de limpeza">Produtos de limpeza</option>
-                  <option value="Laticínios">Laticínios</option>
-                  <option value="Cosméticos">Cosméticos</option>
+
                 </select>
               </div>
               <div className={styles.table}>
@@ -84,20 +82,39 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
           </div>
         </div>
       </div>
+
     );
   }
+
+
+  private tipoproduto = async () => {
+    const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
+    console.log(items);
+    if (items.length > 0) {
+      var html_fornecedores = `<select id="TIPO_PRODUTO">`
+      items.map((item, index) => {
+        html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
+      })
+      html_fornecedores += `</select>`
+      document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
+    }
+    else {
+      alert(`Lista Vazia`)
+    }
+  }
+
   //Criar item
 
   private createItem = async () => {
-    var nome_produto = document.getElementById("NOME_PRODUTO")['value']; 
-    var quantidade = document.getElementById("QUANTIDADE")['value']; 
-    var data = document.getElementById("DATA_VALIDADE")['value']; 
+    var nome_produto = document.getElementById("NOME_PRODUTO")['value'];
+    var quantidade = document.getElementById("QUANTIDADE")['value'];
+    var data = document.getElementById("DATA_VALIDADE")['value'];
     var tipo_produto = document.getElementById("TIPO_PRODUTO")['value'];
     var produto_importado = document.getElementById("PRODUTO_IMPORTADO")['value'];
 
     //Converte a data para padrão BR
     var data_br = new Date(data);
-    var data_formatada = data_br.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+    var data_formatada = data_br.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
     //Verifica campos vazios
     if (produto_importado === "") {
       alert("O campo Produto importado e diferente de SIM ou NAO");
@@ -120,12 +137,12 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
       alert("O campo Tipo de produto esta vazio");
 
     }
-    
-  
+
+
     try {
 
 
-      
+
       if (nome_produto.trim() && quantidade && data && tipo_produto && produto_importado != "") {
         //Imput de dados via na lista
         const addItem = await sp.web.lists.getByTitle("SUPERMERCADO").items.add({ //Lista utilizada SUPERMERCADO - Altera para nome da lista usada
@@ -134,7 +151,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
           'PRODUTO_IMPORTADO': produto_importado,
           'DATA_VALIDADE': data_formatada,
           'TIPO_PRODUTO': tipo_produto,
-          'DATA_SEM_FORMATACAO':data
+          'DATA_SEM_FORMATACAO': data
         });
 
         //Limpa os campos do formulario
@@ -163,7 +180,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
     try {
       //Seleciona ID do item digitado
       const id: number = document.getElementById('itemId')['value'];
-      
+
       if (id > 0) {
         const item: any = await sp.web.lists.getByTitle("SUPERMERCADO").items.getById(id).get(); //Busca na lista pelo ID
         document.getElementById('NOME_PRODUTO')['value'] = item.NOME_PRODUTO;
@@ -237,7 +254,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
     }
     var data_br = new Date(data);
-    var data_formatada = data_br.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+    var data_formatada = data_br.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
     try {
       if (nome_produto.trim() && quantidade && data && tipo_produto && produto_importado != "") {
         const id: number = document.getElementById('itemId')['value'];
@@ -286,7 +303,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
         document.getElementById("DATA_VALIDADE")['value'] = "";
         document.getElementById("TIPO_PRODUTO")['value'] = "";
         document.getElementById("itemId")['value'] = "";
-        
+
       }
       else {
         alert(`Por favor insira um ID Valido`);
@@ -296,4 +313,5 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
       console.error(e);
     }
   }
-}
+};
+
