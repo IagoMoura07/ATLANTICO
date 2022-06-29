@@ -14,6 +14,7 @@ SPFx Yoman Generator v1.14.0<br>
 Observações importantes: <br>
 O nome da lista usada foi: SUPERMERCADO (Field da lista tambem é SUPERMERCADO) <br>
 O field dos campos da lista foi: NOME_PRODUTO, QUANTIDADE, DATA_VALIDADE, TIPO_PRODUTO, PRODUTO_IMPORTADO, DATA_SEM_FORMATACAO<br>
+O campo DATA_SEM_FORMATACAO so existe na lista do Sharepoint e serve unica e exclusivamente para consulta da data.<br>
 O campo QUANTIDADE foi definido como Number, todos os demais definidos como Texto com uma linha.<br><br>
 
 ## References
