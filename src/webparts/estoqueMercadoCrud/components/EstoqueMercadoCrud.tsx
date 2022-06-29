@@ -19,8 +19,8 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
     } = this.props;
 
     return (
-      
-      
+
+
       <div className={styles.EstoqueMercadoCrud}>
         <div className={styles.container}>
           <div className={styles.fila}>
@@ -31,11 +31,11 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
               </div>
               <div className={styles.itemField}>
                 <div className={styles.fieldLabel}>*Nome Produto:</div>
-                <input type="text" id='NOME_PRODUTO'></input>
+                <input type="text" id='NOME_PRODUTO' required></input>
               </div>
               <div className={styles.itemField}>
                 <div className={styles.fieldLabel}>*Quantidade:</div>
-              <input type="number" id="QUANTIDADE"></input>
+                <input type="number" id="QUANTIDADE"></input>
               </div>
               <div className={styles.itemField}>
                 <div className={styles.fieldLabel}>*Data Validade:</div>
@@ -89,30 +89,45 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
   //Criar item
   //Teste GIT
   private createItem = async () => {
-    if (document.getElementById("PRODUTO_IMPORTADO")['value'] === "") {
+    var nome_produto = document.getElementById("NOME_PRODUTO")['value'];
+    var quantidade = document.getElementById("QUANTIDADE")['value'];
+    var data = document.getElementById("DATA_VALIDADE")['value'];
+    var tipo_produto = document.getElementById("TIPO_PRODUTO")['value'];
+    var produto_importado = document.getElementById("PRODUTO_IMPORTADO")['value'];
+
+
+    if (produto_importado === "") {
       alert("O campo Produto importado e diferente de SIM ou NAO");
 
 
     }
-    if (document.getElementById("NOME_PRODUTO")['value'] === "") {
+    if (nome_produto.trim() === "") {
       alert("O campo Nome do Produto esta vazio");
 
     }
-    if (document.getElementById("QUANTIDADE")['value'] === "") {
+    if (quantidade === "") {
       alert("O campo Quantidade esta vazio");
 
     }
-    if (document.getElementById("DATA_VALIDADE")['value'] === "") {
+    if (data === "") {
       alert("O campo Data de Validade esta vazio");
 
     }
-    if (document.getElementById("TIPO_PRODUTO")['value'] === "") {
+    if (tipo_produto === "") {
       alert("O campo Tipo de produto esta vazio");
 
     }
 
+    /*document.getElementById("PRODUTO_IMPORTADO" && "NOME_PRODUTO" && "QUANTIDADE" && "DATA_VALIDADE" && "TIPO_PRODUTO")['value'] != ""*/
     try {
-      if (document.getElementById("PRODUTO_IMPORTADO" && "NOME_PRODUTO" && "QUANTIDADE" && "DATA_VALIDADE" && "TIPO_PRODUTO")['value'] != "") {
+      /*console.log(nome_produto);
+      console.log(quantidade);
+      console.log(data);
+      console.log(tipo_produto);
+      console.log(produto_importado);*/
+
+
+      if (nome_produto.trim() && quantidade && data && tipo_produto && produto_importado != "") {
         const addItem = await sp.web.lists.getByTitle("SUPERMERCADO").items.add({
           'NOME_PRODUTO': document.getElementById("NOME_PRODUTO")['value'],
           'QUANTIDADE': document.getElementById("QUANTIDADE")['value'],
@@ -129,6 +144,10 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
         document.getElementById("PRODUTO_IMPORTADO")['value'] = "";
         document.getElementById("DATA_VALIDADE")['value'] = "";
         document.getElementById("TIPO_PRODUTO")['value'] = "";
+
+      }
+      else {
+        console.log("erro");
       }
     }
     catch (e) {
