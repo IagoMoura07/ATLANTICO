@@ -31,7 +31,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
               </div>
               <div className={styles.itemField}>
                 <div className={styles.fieldLabel}>*Nome Produto:</div>
-                <input type="text" id='NOME_PRODUTO' required></input>
+                <input type="text" id='NOME_PRODUTO'></input>
               </div>
               <div className={styles.itemField}>
                 <div className={styles.fieldLabel}>*Quantidade:</div>
@@ -61,7 +61,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
               </div>
               <div className={styles.table}>
                 <div className={styles.table1}>Todos os Itens:</div>
-                <div id="allItems"></div>
+                <div id="allitems"></div>
               </div>
               <div className={styles.buttonSection}>
                 <div className={styles.button}>
@@ -71,7 +71,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
                   <span className={styles.label} onClick={this.getItemById}>Importar</span>
                 </div>
                 <div className={styles.button}>
-                  <span className={styles.label} onClick={this.getAllItems}>Ver todos</span>
+                  <span className={styles.label} onClick={this.getAllitens}>Ver todos</span>
                 </div>
                 <div className={styles.button}>
                   <span className={styles.label} onClick={this.updateItem}>Atualizar</span>
@@ -181,13 +181,13 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
 
   //Buscar todos os itens
-  private getAllItems = async () => {
+  private getAllitens = async () => {
     try {
-      const items: any[] = await sp.web.lists.getByTitle("SUPERMERCADO").items.get();
-      console.log(items);
-      if (items.length > 0) {
+      const itens: any[] = await sp.web.lists.getByTitle("SUPERMERCADO").items.get();
+      console.log(itens);
+      if (itens.length > 0) {
         var html = `<table width="100px" border = "1" cellspacing="2" cellpadding="4"><tr align="center"><th width="250px">ID</th><th>Nome Produto</th><th>Quantidade    </th> <th>Produto Importado    </th> <th>Data de Validade    </th> <th>Tipo do Produto    </th></tr>`;
-        items.map((item, index) => {
+        itens.map((item, index) => {
           html += `<tr align="center"><td>${item.ID}      </td><td>${item.NOME_PRODUTO}      </td><td>${item.QUANTIDADE}      </td> <td>${item.PRODUTO_IMPORTADO}      </td> <td>${item.DATA_VALIDADE}      </td> <td>${item.TIPO_PRODUTO}      </td></li>`;
         });
         html += `</table>`;
