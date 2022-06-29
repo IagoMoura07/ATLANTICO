@@ -99,7 +99,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
       document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
     }
     else {
-      alert(`Lista Vazia`)
+      console.log(`Lista Vazia`);
     }
   }
 
