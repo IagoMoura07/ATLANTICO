@@ -11,7 +11,10 @@ import { useEffect, useState } from "react";
 //window.addEventListener('load', tipoproduto);
 
 export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoCrudProps, {}> {
-  
+  componentDidMount(): void {
+    this.tipoproduto();
+  }
+
   public render(): React.ReactElement<IEstoqueMercadoCrudProps> {
     const {
       description,
@@ -21,9 +24,6 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
       userDisplayName
     } = this.props;
 
-
-
-  
     return (
 
       <div className={styles.EstoqueMercadoCrud}>
@@ -54,11 +54,14 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
                   <option value="Não">Não</option>
                 </select>
               </div>
+              
               <div className={styles.itemField}>
-              <div className={styles.fieldLabel}>*Tipo de produto</div>
-              <button className = {styles.teste} onClick={this.tipoproduto}>Clique para escolher</button>
+
+
+                <div className={styles.fieldLabel} >*Tipo de produto</div>
+
                 <select id="TIPO_PRODUTO"></select>
-                </div>
+              </div>
               <div className={styles.table}>
                 <div className={styles.table1}>Todos os Itens:</div>
                 <div id="allitems"></div>
@@ -87,6 +90,8 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
     );
   }
+
+
   private tipoproduto = async () => {
     //Busca itens na lista auxiliar
     const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get(); //Lista utilizada TIPO_PRODUTO - Altera para nome da lista usada
@@ -103,7 +108,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
     else {
       console.log(`Lista Vazia`);
     }
-    
+
   }
 
   //Criar item
@@ -315,24 +320,43 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
     catch (e) {
       console.error(e);
     }
-  
+
   }
-  
+
 };
-/*async function teste(props){
+
+window.addEventListener('load', async function teste3 () {
+  console.log ("GG")
+})
+window.onload = async function aaa () {
   const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
-    console.log(items);
-    if (items.length > 0) {
-      var html_fornecedores = `<select id="TIPO_PRODUTO">`
-      items.map((item, index) => {
-        html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
-      })
-      html_fornecedores += `</select>`
-      document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
-    }
-    else {
-      console.log(`Lista Vazia`);
-    }
-}*/
+  console.log(items);
+  if (items.length > 0) {
+    var html_fornecedores = `<select id="TIPO_PRODUTO">`
+    items.map((item, index) => {
+      html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
+    })
+    html_fornecedores += `</select>`
+    document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
+  }
+  else {
+    console.log(`Lista Vazia`);
+  }
+};
+async function teste() {
+  const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
+  console.log(items);
+  if (items.length > 0) {
+    var html_fornecedores = `<select id="TIPO_PRODUTO">`
+    items.map((item, index) => {
+      html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
+    })
+    html_fornecedores += `</select>`
+    document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
+  }
+  else {
+    console.log(`Lista Vazia`);
+  }
+}
 
 
