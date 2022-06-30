@@ -54,7 +54,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
                   <option value="Não">Não</option>
                 </select>
               </div>
-              
+
               <div className={styles.itemField}>
 
 
@@ -325,38 +325,5 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
 };
 
-window.addEventListener('load', async function teste3 () {
-  console.log ("GG")
-})
-window.onload = async function aaa () {
-  const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
-  console.log(items);
-  if (items.length > 0) {
-    var html_fornecedores = `<select id="TIPO_PRODUTO">`
-    items.map((item, index) => {
-      html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
-    })
-    html_fornecedores += `</select>`
-    document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
-  }
-  else {
-    console.log(`Lista Vazia`);
-  }
-};
-async function teste() {
-  const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
-  console.log(items);
-  if (items.length > 0) {
-    var html_fornecedores = `<select id="TIPO_PRODUTO">`
-    items.map((item, index) => {
-      html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
-    })
-    html_fornecedores += `</select>`
-    document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
-  }
-  else {
-    console.log(`Lista Vazia`);
-  }
-}
 
 
