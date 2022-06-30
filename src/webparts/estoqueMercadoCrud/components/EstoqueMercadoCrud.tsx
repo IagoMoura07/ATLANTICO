@@ -1,11 +1,12 @@
 import * as React from 'react';
 import styles from './EstoqueMercadoCrud.module.scss';
 import { IEstoqueMercadoCrudProps } from './IEstoqueMercadoCrudProps';
-import { escape } from '@microsoft/sp-lodash-subset';
+import { escape, throttle } from '@microsoft/sp-lodash-subset';
 import { sp } from "@pnp/sp";
 import "@pnp/sp/webs";
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
+import { useEffect, useState } from "react";
 
 //window.addEventListener('load', tipoproduto);
 
@@ -19,6 +20,8 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
       hasTeamsContext,
       userDisplayName
     } = this.props;
+
+
 
   
     return (
@@ -51,12 +54,11 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
                   <option value="Não">Não</option>
                 </select>
               </div>
-              <div className={styles.itemField}onClick={this.tipoproduto}>
-                <div className={styles.fieldLabel}onLoad={this.tipoproduto} >*Tipo de Produto</div>
-                <select id="TIPO_PRODUTO">
-
-                </select>
-              </div>
+              <div className={styles.itemField}>
+              <div className={styles.fieldLabel}>*Tipo de produto</div>
+              <button className = {styles.teste} onClick={this.tipoproduto}>Clique para escolher</button>
+                <select id="TIPO_PRODUTO"></select>
+                </div>
               <div className={styles.table}>
                 <div className={styles.table1}>Todos os Itens:</div>
                 <div id="allitems"></div>
@@ -85,8 +87,32 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
     );
   }
+  /*private teste = async () => {
+    
+  }
 
-
+ /* private tipoproduto = async () => {
+    const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
+    console.log(items);
+    if (items.length > 0) {
+      var html_fornecedores = `<div className={styles.itemField}>
+              
+                                <div className={styles.fieldLabel}>*Tipo de Produto</div>
+      
+      
+                                            <select id="TIPO_PRODUTO">`
+      items.map((item, index) => {
+        html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
+      })
+      html_fornecedores += `</select>`
+      html_fornecedores += `</div>`
+      document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
+    }
+    else {
+      console.log(`Lista Vazia`);
+    }
+    
+  }*/
   private tipoproduto = async () => {
     const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
     console.log(items);
@@ -101,6 +127,7 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
     else {
       console.log(`Lista Vazia`);
     }
+    
   }
 
   //Criar item
@@ -312,6 +339,24 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
     catch (e) {
       console.error(e);
     }
+  
   }
+  
 };
+/*async function teste(props){
+  const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
+    console.log(items);
+    if (items.length > 0) {
+      var html_fornecedores = `<select id="TIPO_PRODUTO">`
+      items.map((item, index) => {
+        html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
+      })
+      html_fornecedores += `</select>`
+      document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
+    }
+    else {
+      console.log(`Lista Vazia`);
+    }
+}*/
+
 
