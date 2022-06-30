@@ -87,36 +87,12 @@ export default class EstoqueMercadoCrud extends React.Component<IEstoqueMercadoC
 
     );
   }
-  /*private teste = async () => {
-    
-  }
-
- /* private tipoproduto = async () => {
-    const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
-    console.log(items);
-    if (items.length > 0) {
-      var html_fornecedores = `<div className={styles.itemField}>
-              
-                                <div className={styles.fieldLabel}>*Tipo de Produto</div>
-      
-      
-                                            <select id="TIPO_PRODUTO">`
-      items.map((item, index) => {
-        html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
-      })
-      html_fornecedores += `</select>`
-      html_fornecedores += `</div>`
-      document.getElementById("TIPO_PRODUTO").innerHTML = html_fornecedores;
-    }
-    else {
-      console.log(`Lista Vazia`);
-    }
-    
-  }*/
   private tipoproduto = async () => {
-    const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get();
+    //Busca itens na lista auxiliar
+    const items: any[] = await sp.web.lists.getByTitle("TIPO_PRODUTO").items.get(); //Lista utilizada TIPO_PRODUTO - Altera para nome da lista usada
     console.log(items);
     if (items.length > 0) {
+      //Gera HTML para preencher o campo Tipo Produto
       var html_fornecedores = `<select id="TIPO_PRODUTO">`
       items.map((item, index) => {
         html_fornecedores += `<option value="${item.TIPO_PRODUTO}">${item.TIPO_PRODUTO}</option>`;
