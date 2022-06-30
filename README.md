@@ -19,6 +19,9 @@ O campo QUANTIDADE foi definido como Number, todos os demais definidos como Text
 
 O tipo de produto e alimentado por uma lista auxiliar do Sharepoint com nome de TIPO_PRODUTO, o campo tambem se chama TIPO_PRODUTO.<br><br>
 
+
+https://www.youtube.com/watch?v=fRlwJAEr3j0 - Link do video demonstrativo.<br><br>
+
 ## References
 
 - [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
